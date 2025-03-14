@@ -103,6 +103,7 @@ private:
 };
 
 
+
 ostream& operator << (ostream& out,  const Empl& e) {
 
 	out << e._id << "\t" 
