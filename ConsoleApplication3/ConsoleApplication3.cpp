@@ -1,21 +1,14 @@
-﻿#pragma region 
-
-
-
-#pragma once
+﻿#include "SimpleTimer.h"
 #include <iostream>
 #include <string>
-#include <set>
-#include <unordered_set>
+#include <deque>
+#include <queue>
+
+#include <algorithm>
 
 #include "sugar.h"
 #include "Class.h"
-
 using namespace std;
-
-
-
-#pragma endregion head
 
 
 
@@ -24,48 +17,32 @@ int main() {
     setlocale(LC_ALL, "RU_ru");
     system("color 70\n cls\n");
 
-    system("mode con cols=100 lines=30");
+    //system("mode con cols=100 lines=30");
     //HANDLE hWnd = GetStdHandle(STD_OUTPUT_HANDLE);
     //COORD bufferSize = { 100, 50 };
     //SetConsoleScreenBufferSize(hWnd, bufferSize);
 
+    //ios_base::sync_with_stdio(false);
+    //cin.tie(nullptr);
 
-    #include "SimpleTimer.h"
-    SimpleTimer STimer;
-#pragma endregion main() {  
+    DURTMR(main);    // == SimpleTimer ST;
+#pragma endregion main() {
 
-    Empl Alex;
-    Alex._day     = 11;
-    Alex._month   = 03;
-    Alex._year    = 1911;
-    Alex._name    = "Алексей";
-    Alex._surname = "Сорокин";
-    Alex._sname   = "Валерьевич";
-    Alex._id      = to_string(EmplHasher()(Alex));
+    DURTMR(Этап 1);
 
+    int i = 10;
+    float f = 20.0;
+    bool b = 0;
 
+    vv(i);
+    vv(f);
+    vv(b);
 
-    Gener_empl ge;
-    const int N = 20;
-
-
-
-    unordered_set <Empl, EmplHasher> us;
-    us.insert(Alex);
-
-    for (int i = 0; i < N; ++i)
-        us.insert(ge.make_Random_Chel());
-
-
-
-    for (const auto& el : us)
-        wl(el);
-    wl();
-
+    ba(b);
 
 
 #pragma region }
     std::cout << std::endl << std::endl;
     return 0;
 }
-#pragma endregion 
+#pragma endregion
