@@ -23,7 +23,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SimpleTimer.h">
+    <ClInclude Include="STimer.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="sugar.h">

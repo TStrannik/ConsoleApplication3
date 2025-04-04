@@ -13,27 +13,27 @@ using namespace std::chrono;
 #define UNIQ_ID(Lineno) UNIQ_ID_IMPL(Lineno)
 
 #define DURTMR(name) \
-	SimpleTimer UNIQ_ID(__LINE__)(#name);
+	STimer UNIQ_ID(__LINE__)(#name);
 
 
 
-struct SimpleTimer {
+struct STimer {
 
-	SimpleTimer() {
+	STimer() {
 
 		_name = "";
 		_start = high_resolution_clock::now();
 		_exist = true;
 
 	}
-	explicit SimpleTimer(string name) {
+	explicit STimer(string name) {
 
 		_name = name;
 		_start = high_resolution_clock::now();
 		_exist = true;
 
 	}
-	~SimpleTimer() {
+	~STimer() {
 
 		if (_exist) {
 			_end = high_resolution_clock::now();
@@ -46,7 +46,7 @@ struct SimpleTimer {
 
 	}
 
-	void stop() { this->~SimpleTimer(); }
+	void stop() { this->~STimer(); }
 
 private:
 	bool   _exist = false;
