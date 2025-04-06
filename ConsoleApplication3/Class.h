@@ -11,20 +11,20 @@ struct Human abstract {
 };
 
 
-//struct Kid : public Human {
-struct Kid {
+struct Kid : public Human {
+//struct Kid {
 
-	string name;
-	int	   age;
+	//string name;
+	//int	   age;
 
 };
 
 
-//struct Person : public Human {
-struct Person {
+struct Person : public Human {
+//struct Person {
 
-	string		 name;
-	int			 age;
+	//string		 name;
+	//int			 age;
 	vector <Kid> kids;
 
 };
@@ -56,3 +56,25 @@ vector <Person> pers_sample = {
         }
     },
 };
+
+
+
+string _kids(const Person& pers) {
+
+    string result = "";
+
+    result += "   \n      \"kids\": [\n";
+    for (int j = 0; j < pers.kids.size(); ++j) {
+
+        result += "        { \"name\": \""; result += pers.kids.at(j).name;           result += "\", ";
+        result += "\"age\": ";              result += to_string(pers.kids.at(j).age); result += " }";
+
+        if (j < pers.kids.size() - 1) result += ",";
+        result += "\n";
+
+    }
+    result += "      ]  \n";
+
+    return result;
+
+}

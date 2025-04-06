@@ -32,45 +32,51 @@ int main() {
 
         vector <Person> pers = pers_sample;
 
-        try {
 
-            json j{};
-
-            j["pers_size"] = pers.size();
-            vector <int> kids_sizes;
+        string str;
+        
+        str += "{\n";
+        str += "  \"kids_size\": [ ";
+        
+        for (int i = 0; i < pers.size(); ++i) {
+            str += to_string(pers.at(i).kids.size());
+            if (i < pers.size() - 1) str += ", ";
+        }
+        
+        str += " ], \n";
+        
+        str += "  \"pers\": [\n";
+        for (int i = 0; i < pers.size(); ++i) {
+        
+            str += "    {\n      \"name\": \""; str += pers.at(i).name;           str += "\",\n";
+            str += "      \"age\": ";           str += to_string(pers.at(i).age); str += ",";
+            str += _kids(pers.at(i));
+            str += "    }";
+        
+            if (i < pers.size() - 1) str += ",";
+            str += "\n";
+        
             
-            for (int i = 0; i < pers.size(); ++i)
-                kids_sizes.push_back( pers.at(i).kids.size() );
-
-            for (const auto& el : kids_sizes)
-                j["kids_sizes"] += el;
-
-
-            //// json::parse R("")
-
-
-            for (const auto& el : pers) {
-                j["pers"] += {
-                    { "name", el.name },
-                    { "age",  el.age }
-                        /// сюда вектор 
-                };
-            }
-
-
-            fstream out("json2.json");
-            out << j;
-            out.close();
-
         }
-        catch (const json::exception& jex) {
-            wl(jex.what());
-        }
+        str += "  ],\n";
+        str += "  \"pers_size\": "; str += to_string(pers.size());
+        str += "\n}";
+        
+        
+        
+        //w(str);
+        
+        
+        
+        fstream out("json2.json");
+        out << str;
+        out.close();
+
 
     }
     
     
-    /*
+    
     {
 
         json jn;
@@ -81,32 +87,35 @@ int main() {
             in >> jn;
             in.close();
 
-            
-            int pers_size = jn["pers_size"].get <int>();
 
+
+            int pers_size = jn["pers_size"].get <int>();
             vector <Person> pers(pers_size);
+
+
 
             for (int i = 0; i < pers_size; ++i) {
 
                 pers.at(i).name = jn["pers"][i]["name"].get <string>();
                 pers.at(i).age  = jn["pers"][i]["age" ].get <int>();
 
+                int kids_size = jn["kids_size"][i].get <int>();
 
-
-                int kids_size = jn["kids_size"].get <int>();
-
-
-                pers.at(i).kids = vector <Person>(kids_size);
+                pers.at(i).kids = vector <Kid> (kids_size);
 
                 for (int j = 0; j < kids_size; ++j) {
                     pers.at(i).kids.at(j).name = jn["pers"][j]["name"].get <string>();
-                    pers.at(i).kids.at(j).age = jn["pers"][j]["age"].get <int>();
+                    pers.at(i).kids.at(j).age =  jn["pers"][j]["age" ].get <int>();
                 }
 
             }
             
             for (const auto& el : pers) {
                 w(el.name); wt(); wl(el.age);
+                for (const auto& k : pers) {
+                    wt(); w(k.name); wt(); wl(k.age);
+                }
+                wl();
             }
 
         }
@@ -115,8 +124,7 @@ int main() {
         }
 
     }
-    */
-        
+     
 #pragma region }
     std::cout << std::endl << std::endl;
     return 0;

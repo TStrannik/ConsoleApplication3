@@ -1,0 +1,30 @@
+{
+  "kids_size": [ 2, 1, 3 ], 
+  "pers": [
+    {
+      "name": "Ashotik",
+      "age": 42,   
+      "kids": [
+        { "name": "Ash", "age": 13 },
+        { "name": "Ass", "age": 10 }
+      ]  
+    },
+    {
+      "name": "Phosgen",
+      "age": 43,   
+      "kids": [
+        { "name": "Pho", "age": 19 }
+      ]  
+    },
+    {
+      "name": "Avaness",
+      "age": 44,   
+      "kids": [
+        { "name": "Ava", "age": 13 },
+        { "name": "Avo", "age": 10 },
+        { "name": "Aro", "age": 10 }
+      ]  
+    }
+  ],
+  "pers_size": 3
+}
